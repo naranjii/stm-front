@@ -2,7 +2,6 @@ import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
-
 export default function Login() {
   const [username, setUsername] = useState('');
   const [senha, setSenha] = useState('');
@@ -18,7 +17,7 @@ export default function Login() {
     setErro('');
 
     try {
-      const response = await fetch(`${process.env.VITE_API_URL}/api/auth/login`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, senha }),
@@ -41,7 +40,7 @@ export default function Login() {
   const handleSignUp = async () => {
     setErro('');
     try {
-      const response = await fetch('http://localhost:5000/api/auth/register', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, senha }),

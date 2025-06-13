@@ -15,7 +15,7 @@ export default function TaskDashboard() {
 
   const carregarTasks = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/tasks', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/tasks`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -40,7 +40,7 @@ export default function TaskDashboard() {
       if (dataLimite && horaLimite) {
         prazo = `${dataLimite}T${horaLimite}`;
       }
-      const res = await fetch('http://localhost:5000/api/tasks', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/tasks`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export default function TaskDashboard() {
   const alternarConcluida = async (id, concluida) => {
     try {
       // Envie o status correto para o backend
-      await fetch(`http://localhost:5000/api/tasks/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/tasks/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -77,7 +77,7 @@ export default function TaskDashboard() {
 
   const apagarTask = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/tasks/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/api/tasks/${id}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` },
       });
