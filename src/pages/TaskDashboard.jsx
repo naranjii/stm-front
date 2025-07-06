@@ -1,6 +1,9 @@
 import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import NewtaskBox from '../components/NewtaskBox';
+
+'use client';
 
 export default function TaskDashboard() {
   const { logout } = useContext(AuthContext);
@@ -10,7 +13,6 @@ export default function TaskDashboard() {
   const [dataLimite, setDataLimite] = useState('');
   const [horaLimite, setHoraLimite] = useState('');
   const [erro, setErro] = useState('');
-  const [concluida, setConcluida] = useState(false);
 
   const token = localStorage.getItem('token');
 
@@ -53,7 +55,6 @@ export default function TaskDashboard() {
       setNovaTask('');
       setDataLimite('');
       setHoraLimite('');
-      setConcluida('')
       carregarTasks();
     } catch {
       setErro('Erro ao criar tarefa');
@@ -115,30 +116,15 @@ export default function TaskDashboard() {
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </h2>
       {erro && <p className="text-red-500 text-sm">{erro}</p>}
-      <div className="flex gap-1">
-        <input
-          type="text"
-          placeholder="New task"
-          value={novaTask}
-          onChange={(e) => setNovaTask(e.target.value)}
-          className="flex-1 p-3 border rounded-lg w-130"
-        />
-        <input
-          type="date"
-          value={dataLimite}
-          onChange={(e) => setDataLimite(e.target.value)}
-          className="p-3 border rounded-lg"
-        />
-        <input
-          type="time"
-          value={horaLimite}
-          onChange={(e) => setHoraLimite(e.target.value)}
-          className="p-3 border rounded-lg"
-        />
-        <button onClick={criarTask} className="newtaskbutton bg-blue-500 text-white p-2 rounded-xl">
-          📝
-        </button>
-      </div>
+      <NewtaskBox
+        novaTask={novaTask}
+        setNovaTask={setNovaTask}
+        dataLimite={dataLimite}
+        setDataLimite={setDataLimite}
+        horaLimite={horaLimite}
+        setHoraLimite={setHoraLimite}
+        criarTask={criarTask}
+      />
       <ul className="text-center">
         {tasks.map((task) => (
           <li key={task._id} className={task.concluida ? 'taskdone h-11 m-2 flex items-center justify-between bg-transparent p-2 border rounded-xl shadow' : 'h-11 m-2 flex items-center justify-between bg-transparent p-2 border rounded-xl shadow'}>
