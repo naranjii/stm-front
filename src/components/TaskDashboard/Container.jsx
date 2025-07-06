@@ -1,8 +1,8 @@
-
-export default function TaskContainer({ tasks, alternarConcluida, apagarTask }) {
+export default function TaskContainer() {
     return (
-        <ul className="text-center">
-            {tasks.map((task) => (
+        <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 border-2 border-green-300 containershadow bgbox
+       text-green-700 font-medium rounded-xl p-4 max-w-x2 mx-auto space-y-4 mt-6">
+            <ul className="text-center">
                 <li key={task._id} className={task.concluida ? 'taskdone h-11 m-2 flex items-center justify-between bg-transparent p-2 border rounded-xl shadow' : 'h-11 m-2 flex items-center justify-between bg-transparent p-2 border rounded-xl shadow'}>
                     <div>
                         <input
@@ -30,7 +30,7 @@ export default function TaskContainer({ tasks, alternarConcluida, apagarTask }) 
                         </button>
                     </div>
                 </li>
-            ))}
-        </ul>
+            </ul>
+        </div>
     )
 }

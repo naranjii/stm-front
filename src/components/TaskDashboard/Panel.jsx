@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
-import NewtaskBox from './PanelBox';
-import TaskContainer from './TaskContainer';
+import NewtaskBox from './ui/PanelNewTaskUI';
+import TaskContainer from './Container';
+import PanelNewTaskUI from './ui/PanelNewTaskUI';
 
-export default function TaskPanel() {
+export default function Panel() {
   const [tasks, setTasks] = useState([]);
   const [novaTask, setNovaTask] = useState('');
   const [dataLimite, setDataLimite] = useState('');
   const [horaLimite, setHoraLimite] = useState('');
   const [erro, setErro] = useState('');
-  const [containers, setContainers] = useState(['Default']);
-  const [selectedContainer, setSelectedContainer] = useState('Default');
+  const [container, setContainer] = useState(['Main']);
+  const [selectedContainer, setSelectedContainer] = useState('Main');
 
   const token = localStorage.getItem('token');
 
@@ -103,24 +104,25 @@ export default function TaskPanel() {
       setErro('Erro ao apagar tarefa');
     }
   };
-
+  const containerArray = [...container];
   const handleNewContainer = () => {
+    containerArray.forEach(TaskContainer => container);
     const newContainerName = prompt('Enter new container name:');
     if (newContainerName) {
-      setContainers([...containers, newContainerName]);
+      setContainer([...container, newContainerName]);
       setSelectedContainer(newContainerName);
     }
   };
 
   return (
     <div className="space-y-4">
-        <h2 className="text-[25px] font-bold text-center underline tracking-[5px] underline-offset-12">
+        <h2 className="text-[25px] font-bold text-center underline tracking-[5px] underline-offset-12 select-none">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             🍃Task List🍃
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </h2>
         {erro && <p className="text-red-500 text-sm">{erro}</p>}
-        <NewtaskBox
+        <PanelNewTaskUI
             novaTask={novaTask}
             setNovaTask={setNovaTask}
             dataLimite={dataLimite}
@@ -128,15 +130,11 @@ export default function TaskPanel() {
             horaLimite={horaLimite}
             setHoraLimite={setHoraLimite}
             criarTask={criarTask}
-            containers={containers}
+            container={container}
+            setContainer={setContainer}
             selectedContainer={selectedContainer}
             setSelectedContainer={setSelectedContainer}
             handleNewContainer={handleNewContainer}
-        />
-        <TaskContainer 
-            tasks={tasks.filter(task => task.container === selectedContainer)} 
-            alternarConcluida={alternarConcluida} 
-            apagarTask={apagarTask} 
         />
     </div>
   );

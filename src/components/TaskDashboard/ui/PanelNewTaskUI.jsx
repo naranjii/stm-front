@@ -1,4 +1,4 @@
-export default function PanelBox({
+export default function PanelNewTaskUI({
   novaTask,
   setNovaTask,
   dataLimite,
@@ -6,7 +6,7 @@ export default function PanelBox({
   horaLimite,
   setHoraLimite,
   criarTask,
-  containers,
+  container,
   selectedContainer,
   setSelectedContainer,
   handleNewContainer
@@ -37,15 +37,15 @@ export default function PanelBox({
         onChange={(e) => setSelectedContainer(e.target.value)}
         className="p-3 border rounded-lg"
       >
-        {containers.map(container => (
+        {container.map(container => (
           <option key={container} value={container}>{container}</option>
         ))}
       </select>
       <button
         onClick={handleNewContainer}
-        className="newcontainerbutton bg-green-500 text-white p-2 rounded-xl"
+        className="newtaskbutton bg-green-500 text-white p-2 rounded-xl"
       >
-        New Container
+        📁
       </button>
       <button
         onClick={criarTask}
