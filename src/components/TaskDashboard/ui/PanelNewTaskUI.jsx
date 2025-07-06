@@ -6,9 +6,9 @@ export default function PanelNewTaskUI({
   horaLimite,
   setHoraLimite,
   criarTask,
-  container,
-  selectedContainer,
-  setSelectedContainer,
+  containers,
+  selectedContainerId,
+  setSelectedContainerId,
   handleNewContainer
 }) {
   return (
@@ -33,12 +33,12 @@ export default function PanelNewTaskUI({
         className="p-3 border rounded-lg"
       />
       <select 
-        value={selectedContainer} 
-        onChange={(e) => setSelectedContainer(e.target.value)}
+        value={selectedContainerId} 
+        onChange={(e) => setSelectedContainerId(e.target.value)}
         className="p-3 border rounded-lg"
       >
-        {container.map(container => (
-          <option key={container} value={container}>{container}</option>
+        {containers.map(container => (
+          <option key={container._id} value={container._id}>{container.name}</option>
         ))}
       </select>
       <button

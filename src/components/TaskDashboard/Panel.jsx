@@ -9,10 +9,27 @@ export default function Panel() {
   const [dataLimite, setDataLimite] = useState('');
   const [horaLimite, setHoraLimite] = useState('');
   const [erro, setErro] = useState('');
-  const [container, setContainer] = useState(['Main']);
-  const [selectedContainer, setSelectedContainer] = useState('Main');
+  const [containers, setContainers] = useState([]);
+  const [selectedContainerId, setSelectedContainerId] = useState('');
 
   const token = localStorage.getItem('token');
+
+  const carregarContainers = async () => {
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/containers`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = await res.json();
+      setContainers(data);
+      if (data.length > 0) {
+        setSelectedContainerId(data[0]._id);
+      }
+    } catch (err) {
+      setErro('Erro ao carregar containers');
+    }
+  };
 
   const carregarTasks = async () => {
     try {
@@ -29,6 +46,7 @@ export default function Panel() {
   };
 
   useEffect(() => {
+    carregarContainers();
     carregarTasks();
   }, []);
 
@@ -45,7 +63,7 @@ export default function Panel() {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ nome: novaTask, prazo, container: selectedContainer }),
+        body: JSON.stringify({ nome: novaTask, prazo, containerId: selectedContainerId }),
       });
       if (!res.ok) throw new Error();
       setNovaTask('');
@@ -104,13 +122,23 @@ export default function Panel() {
       setErro('Erro ao apagar tarefa');
     }
   };
-  const containerArray = [...container];
-  const handleNewContainer = () => {
-    containerArray.forEach(TaskContainer => container);
+  const handleNewContainer = async () => {
     const newContainerName = prompt('Enter new container name:');
     if (newContainerName) {
-      setContainer([...container, newContainerName]);
-      setSelectedContainer(newContainerName);
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/containers`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ name: newContainerName }),
+        });
+        if (!res.ok) throw new Error();
+        carregarContainers();
+      } catch (err) {
+        setErro('Erro ao criar container');
+      }
     }
   };
 
@@ -130,12 +158,20 @@ export default function Panel() {
             horaLimite={horaLimite}
             setHoraLimite={setHoraLimite}
             criarTask={criarTask}
-            container={container}
-            setContainer={setContainer}
-            selectedContainer={selectedContainer}
-            setSelectedContainer={setSelectedContainer}
+            containers={containers}
+            selectedContainerId={selectedContainerId}
+            setSelectedContainerId={setSelectedContainerId}
             handleNewContainer={handleNewContainer}
         />
+        {containers.map((container) => (
+            <TaskContainer
+                tasks={tasks.filter(task => task.containerId === container._id)}
+                key={container._id}
+                container={container}
+                alternarConcluida={alternarConcluida}
+                apagarTask={apagarTask}
+            />
+        ))}
     </div>
   );
 }
