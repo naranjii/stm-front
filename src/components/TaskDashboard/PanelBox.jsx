@@ -1,4 +1,4 @@
-export default function NewtaskBox({
+export default function PanelBox({
   novaTask,
   setNovaTask,
   dataLimite,
@@ -6,6 +6,10 @@ export default function NewtaskBox({
   horaLimite,
   setHoraLimite,
   criarTask,
+  containers,
+  selectedContainer,
+  setSelectedContainer,
+  handleNewContainer
 }) {
   return (
     <div className="flex gap-1">
@@ -28,6 +32,21 @@ export default function NewtaskBox({
         onChange={(e) => setHoraLimite(e.target.value)}
         className="p-3 border rounded-lg"
       />
+      <select 
+        value={selectedContainer} 
+        onChange={(e) => setSelectedContainer(e.target.value)}
+        className="p-3 border rounded-lg"
+      >
+        {containers.map(container => (
+          <option key={container} value={container}>{container}</option>
+        ))}
+      </select>
+      <button
+        onClick={handleNewContainer}
+        className="newcontainerbutton bg-green-500 text-white p-2 rounded-xl"
+      >
+        New Container
+      </button>
       <button
         onClick={criarTask}
         className="newtaskbutton bg-blue-500 text-white p-2 rounded-xl"
