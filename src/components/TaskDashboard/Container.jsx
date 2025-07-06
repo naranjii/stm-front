@@ -1,6 +1,6 @@
 export default function TaskContainer({ container, tasks, alternarConcluida, apagarTask }) {
     return (
-        <div className="border-2 border-green-300 containershadow bgbox text-green-700 font-medium rounded-xl p-4 max-w-x2 mx-auto space-y-4 mt-6">
+        <div id = "draggable" className="unset border-2 border-green-300 containershadow bgbox text-green-700 font-medium rounded-xl p-4 max-w-x2 mx-auto space-y-4 mt-6">
             <h3 className="text-xl font-bold text-center mb-4">{container.name}</h3>
             <ul className="text-center">
                 {tasks.map(task => (
