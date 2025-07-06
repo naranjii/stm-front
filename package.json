@@ -15,7 +15,9 @@
     "dotenv": "^16.5.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-router-dom": "^7.6.2"
+    "react-draggable": "^4.5.0",
+    "react-router-dom": "^7.6.2",
+    "sortablejs": "^1.15.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
