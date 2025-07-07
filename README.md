@@ -1,12 +1,39 @@
-# React + Vite
+# 🌟 Starred Task Manager – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Vite](https://img.shields.io/badge/Vite-Frontend-blueviolet?logo=vite)](https://vitejs.dev)
+[![TailwindCSS](https://img.shields.io/badge/Tailwind-CSS-38bdf8?logo=tailwindcss)](https://tailwindcss.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Currently, two official plugins are available:
+![image](https://github.com/user-attachments/assets/62eaa816-185c-4c98-bf19-c0ff84dbc7c1)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📦 About
 
-## Expanding the ESLint configuration
+This is the **frontend** of the 🌟 **Starred Task Manager**, a minimalist task manager with user authentication and persistent storage.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+You can log in, view and create tasks, and organize them using a clean folder-like UI.
+🇧🇷
+_Este é o frontend da aplicação 🌟 Starred Task Manager, onde o usuário pode fazer login, criar tarefas e organizá-las em uma interface simples e responsiva._
+
+---
+
+## 🖥️ Live
+
+Check out @ https://starred-task-manager.vercel.app/
+
+---
+
+## 🛠 Features
+
+- **Login/Register** UI integrated with backend
+- **Responsive UI** using TailwindCSS
+- Task **listing, creation and updates**
+- Clean UX with folder-style task grouping
+
+---
+
+## 🚀 Running Locally
+
+1. Clone the project:
+```bash
+git clone https://github.com/naranjii/stm-front.git
+cd stm-front
