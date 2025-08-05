@@ -1,22 +1,24 @@
-export default function TaskContainer({ container, tasks, alternarConcluida, apagarTask }) {
+import FolderUI from "./ui/FolderUI";
+
+export default function TaskFolderJSX({ container, tasks, alternarConcluida, apagarTask }) {
     return (
-        <div id="draggable" className="unset grow border-2 border-green-300 containershadow bgbox text-green-700 font-medium rounded-xl p-4 max-w-x2  space-y-4 mt-6">
-            <h3 className="text-xl font-bold text-center mb-4">{container.name}</h3>
-            <ul className="text-center">
+        <div id = "draggable" className="unset border-2 border-green-300 containershadow bgbox text-green-700 font-medium rounded-xl p-4 max-w-x2 mx-auto space-y-4 mt-6">
+            <h3 className="text-xl font-bold text-center mb-4">{container.name}
+            </h3>
+            
+            <ul className="text-center"><FolderUI></FolderUI>
                 {tasks.map(task => (
-                    <li key={task._id} className={task.concluida ? 'taskdone m-2 flex items-center justify-between bg-transparent p-2 border rounded-xl shadow' : 'm-2 flex items-center justify-between bg-transparent p-2 border rounded-xl shadow'}>
-                        <div className="flex items-start gap-2">
+                    <li key={task._id} className={task.concluida ? 'taskdone h-11 m-2 flex items-center justify-between bg-transparent p-2 border rounded-xl shadow' : 'h-11 m-2 flex items-center justify-between bg-transparent p-2 border rounded-xl shadow'}>
+                        <div>
                             <input
                                 type="checkbox"
                                 checked={task.concluida}
                                 onChange={() => alternarConcluida(task._id)}
                                 className="mr-2 ml-2 checkbox"
                             />
-                            <div
-                                className={`max-w-[200px] break-words whitespace-normal ${task.concluida ? 'text-green-900 line-through p-2' : 'p-2 text-green-800'}`}
-                            >
+                            <span className={task.concluida ? 'text-green-900 line-through p-2' : 'p-2 text-green-800'}>
                                 {task.nome}
-                            </div>
+                            </span>
                             {task.prazo && (
                                 <small className="ml-2 text-green-600">
                                     ({new Date(task.prazo).toLocaleString()})
