@@ -151,48 +151,48 @@ export default function Panel() {
   return (
     <div className='w-dvw h-dvh flex flex-col items-center justify-center'>
       <div className="flex flex-col items-center justify-center max-w-[90%]">
-      <div id="draggable" className="border-2 border-green-300 containershadow bgbox
+        <div id="draggable" className="border-2 border-green-300 containershadow bgbox
        text-green-700 font-medium rounded-xl p-4 space-y-4">
-        <h2 className="text-[25px] font-bold text-center underline tracking-[5px] underline-offset-12 select-none">
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-          🍃Task List🍃
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        </h2>
-        {erro && <p className="text-red-500 text-sm">{erro}</p>}
-        <PanelNewTaskUI
-          novaTask={novaTask}
-          setNovaTask={setNovaTask}
-          dataLimite={dataLimite}
-          setDataLimite={setDataLimite}
-          horaLimite={horaLimite}
-          setHoraLimite={setHoraLimite}
-          criarTask={criarTask}
-          containers={containers}
-          selectedContainerId={selectedContainerId}
-          setSelectedContainerId={setSelectedContainerId}
-          handleNewContainer={handleNewContainer}
-        />
-        <div className="text-center">
-          <button
-            onClick={() => {
-              logout(); // Remove o token
-              navigate('/login'); // Redireciona para login
-            }}
-            className="text-sm text-gray-500 hover:underline exitbutton"
-          >
-            Exit
-          </button>
+          <h2 className="text-[25px] font-bold text-center underline tracking-[5px] underline-offset-12 select-none">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            🍃starred⭐Task Manager🍃
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </h2>
+          {erro && <p className="text-red-500 text-sm">{erro}</p>}
+          <PanelNewTaskUI
+            novaTask={novaTask}
+            setNovaTask={setNovaTask}
+            dataLimite={dataLimite}
+            setDataLimite={setDataLimite}
+            horaLimite={horaLimite}
+            setHoraLimite={setHoraLimite}
+            criarTask={criarTask}
+            containers={containers}
+            selectedContainerId={selectedContainerId}
+            setSelectedContainerId={setSelectedContainerId}
+            handleNewContainer={handleNewContainer}
+          />
+          <div className="text-center">
+            <button
+              onClick={() => {
+                logout(); // Remove o token
+                navigate('/login'); // Redireciona para login
+              }}
+              className="text-sm text-gray-500 hover:underline exitbutton"
+            >
+              Exit
+            </button>
+          </div>
         </div>
-      </div>
-      <div className="w-full gap-2 flex items-top justify-center">{containers.map((container) => (
-        <TaskContainer
-          tasks={tasks.filter(task => task.containerId === container._id)}
-          key={container._id}
-          container={container}
-          alternarConcluida={alternarConcluida}
-          apagarTask={apagarTask}
-        />
-      ))}</div  ></div>
+        <div className="w-full gap-2 flex items-top justify-center">{containers.map((container) => (
+          <TaskContainer
+            tasks={tasks.filter(task => task.containerId === container._id)}
+            key={container._id}
+            container={container}
+            alternarConcluida={alternarConcluida}
+            apagarTask={apagarTask}
+          />
+        ))}</div  ></div>
     </div>
   );
 }
