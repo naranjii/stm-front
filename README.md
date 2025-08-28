@@ -4,7 +4,8 @@
 [![TailwindCSS](https://img.shields.io/badge/Tailwind-CSS-38bdf8?logo=tailwindcss)](https://tailwindcss.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-![image](https://github.com/user-attachments/assets/62eaa816-185c-4c98-bf19-c0ff84dbc7c1)
+<img width="1192" height="529" alt="image" src="https://github.com/user-attachments/assets/bccf4142-e3dd-4293-ab8d-2f3bf38b9bc8" />
+
 
 ## 📦 About
 
