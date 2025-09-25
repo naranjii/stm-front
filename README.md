@@ -40,4 +40,4 @@ git clone https://github.com/naranjii/stm-front.git
 cd stm-front
 ```
 
-## Link to Backend repo: github.com/naranjii/stm-server/
+## Link to Backend repo: https://github.com/naranjii/stm-server/
